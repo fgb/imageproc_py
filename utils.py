@@ -58,3 +58,13 @@ def load_config(configfile, delimiter='=', comments='#'):
             params[var.strip()] = eval(val)
 
     return params
+
+def progress(current, total):
+    '''Progress bar, originally developed by Andrew Pullin'''
+    width  = 25
+    dashes = int(float(current) / total * width)
+    stars  = width - dashes - 1
+    barstring = ' |' + '-'*dashes + '>' + '*'*stars + '|'
+    sys.stdout.write('\r' + str(current).rjust(len(str(total))) + '/' \
+                                              + str(total) + barstring)
+    sys.stdout.flush()
